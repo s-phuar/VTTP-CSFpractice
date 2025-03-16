@@ -1,0 +1,4 @@
+TODO Task 1
+
+Write the command to import products.csv into Mongo in this file
+mongoimport -d products -c products --type=csv --file=products.csv --headerline
