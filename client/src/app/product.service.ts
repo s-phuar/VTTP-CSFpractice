@@ -41,6 +41,9 @@ export class ProductService {
       error: (err) =>{
         console.error('message:', err.error) //grab error json from controller
         alert(err.error['messages']);
+      },
+      complete:() =>{
+        console.info('completed checkout');
       }
     });
 }
