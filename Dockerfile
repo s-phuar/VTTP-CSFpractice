@@ -24,7 +24,8 @@ COPY ecommerce/mvnw .
 COPY ecommerce/pom.xml .
 
 # copy from angular 
-COPY --from=ng-build /src/dist/client-side/browser/* src/main/resources/static
+COPY --from=ng-build /src/dist/client-side/browser/ src/main/resources/static
+# COPY --from=ng-build /src/dist/client-side/browser/* src/main/resources/static
 
 #compile mvn project and run as executable
 RUN chmod a+x ./mvnw && ./mvnw package -Dmaven.test.skip=true
