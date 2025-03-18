@@ -6,9 +6,10 @@ WORKDIR /src
 
 RUN npm i -g @angular/cli
 
-# COPY client/public public
+# COPY client/public public , dont use this for older versions of angular
 COPY client/src src
 COPY client/*.json .
+# COPY ALL json files
 
 RUN npm ci
 RUN ng build
@@ -36,7 +37,7 @@ FROM openjdk:23-jdk
 WORKDIR /app
 COPY --from=j-build /src/target/ecommerce-0.0.1-SNAPSHOT.jar app.jar
 
-ENV SERVER_PORT=8080
+ENV PORT=8080
 
 ENV SPRING_DATASOURCE_URL=
 ENV SPRING_DATASOURCE_USERNAME=
@@ -47,7 +48,7 @@ ENV SPRING_DATA_MONGODB_URI=
 ENV SPRING_DATA_MONGODB_DATABASE=
 
 
-EXPOSE ${SERVER_PORT}
+EXPOSE ${PORT}
 
 SHELL ["/bin/sh", "-c"]
 
